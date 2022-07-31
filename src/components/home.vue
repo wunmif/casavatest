@@ -10,8 +10,8 @@
 
             <div class=" mh5 mv4 pb7  cf w-95 flex  flex-row tc" >
                 <div class="w-50  pv6">
-                    <div class="tl   black b pt6 f1-ns f2">Don't stop the <br>  groove</div>
-                    <div class="tl mv3  black  pt2 f5-ns f4">Find new music you love with a search</div>
+                    <div class="tl   black b pt6 fa-5x">Don't stop the <br>  groove</div>
+                    <div class="tl mv3  black2  pt2 f5-ns f4">Find new music you love with a search</div>
                     <input @keyup="keyUp" v-model="search" class="mv3 w-50 fl br-pill pa2 ph4 f6" type="text" placeholder="Search for an album...|">
 
                 </div>

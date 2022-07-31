@@ -10,7 +10,8 @@
 </script>
 
 <style lang="scss">
-    // @import "assets/scss/tachyons.css";
+    @import "assets/scss/tachyons.css";
+    
 </style>
 
 <style media="screen">

@@ -17,6 +17,5 @@ module.exports = merge(base, {
         host: "0.0.0.0",
         overlay: true,
         disableHostCheck: true,
-        proxy : "https://api.spotify.com"
     }
 })

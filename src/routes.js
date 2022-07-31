@@ -14,7 +14,7 @@ Vue.use(Router);
 const router = new Router({
     mode: "hash",
     routes: [
-        { path: "", name:"home", component: homeComponent },
+        { path: "/home", name:"home", component: homeComponent },
         { path: "/search/:text?", component: searchComponent, name:"searchpage", props: true},
         // { path: "/about", name:"about", component: aboutComponent },
         
@@ -26,12 +26,12 @@ const router = new Router({
 
 router.beforeResolve((to, from, next) => {
     
-    let storedToken = localStorage.getItem("token")
     
-    if (storedToken == null || storedToken == undefined || storedToken == "") {
+    
+    
         getToken()
         // console.log(jwtToken);
-     }
+     
 
     next();
     

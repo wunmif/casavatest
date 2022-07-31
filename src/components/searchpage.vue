@@ -1,24 +1,25 @@
 <template> 
     <div class="flex circular flex-column vh-100 ma4 ">
         
-        <div class=" pl3  ph5" @click="$router.push({name:'home'})">
+        <div class=" pl3  ph5" > 
             <img src="@/assets/img/groove.svg"  class="mt1 ml4  "  />
         </div>
         
+        
 
         <div class="w-100 mt6 overflow-y-scroll flex flex-column">
-            <img src="@/assets/img/back.svg"  class="pt3 pl3 ml5 self-start h2 "  />
+            <img src="@/assets/img/back.svg" @click="$router.push({name:'home'})" class="pt3 pl3 ml5 self-start h2 "  />
             <div class=" mh3 ph5  cf w-95 flex  flex-row tc" >
                 
                 <div class="w-50  ">
-                    <div class="tl   black b pt3 f1-ns f2">Albums <br> matching  "{{filter}}"</div>
+                    <div class="tl  black b pt3 fa-4x">Albums <br> matching  "{{filter}}"</div>
                     <div class="tl   black2  pv3 f5-ns f4">Find new music you love with a search</div>
                     <input @keyup="keyUp" v-model="search" class="mv3 w-50 fl br-pill pa2 ph4 f6" type="text" placeholder="Search for an album...|">
 
                 </div>            
             </div>
 
-
+            <div class=" loader"></div>
 
             <div class=" mb4">
    
@@ -35,7 +36,9 @@
                     </div>
         
                 </div>
-            </div>            
+            </div> 
+
+                       
         </div>     
     </div>
 </template>
@@ -67,6 +70,23 @@
     right: 5%;
     width: 15%;
 }  
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
 
 
 </style>
