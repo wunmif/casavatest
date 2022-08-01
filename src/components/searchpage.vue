@@ -1,7 +1,7 @@
 <template> 
     <div class="flex circular flex-column vh-100 ma4 ">
         
-        <div class=" pl3  ph5" > 
+        <div class="pl3 ph5" @click="$router.push({name:'home'})" > 
             <img src="@/assets/img/groove.svg"  class="mt1 ml4  "  />
         </div>
         
@@ -19,26 +19,33 @@
                 </div>            
             </div>
 
-            <div class=" loader"></div>
 
             <div class=" mb4">
    
-                <div class="ph3 justify-around flex flex-wrap">
+                <div v-if="lsearching" class="ph3 justify-around flex flex-wrap">
                     <div class=" w-25 mv4 mr2 " v-for="(album, index) in albumList" :key="index" >
-                        <div class="container">
+                        <div class="grow container">
                             <div v-for="(image, indexThree) in album.images.slice(0, 1)" >
                                 <img  :src="image.url" alt="Snow" style="width:100%;"/>
                             </div>
                             <div class="white b f3 artistName">{{album.name}}</div>
                             <div class="white f4 title" v-for="(artist, indexTwo) in album.artists" :key="indexTwo">{{artist.name}}</div>
+                            <div class="line"></div>
                             <div class="button"> <img src="@/assets/img/playbutton.svg"/> </div>
                         </div>  
                     </div>
-        
                 </div>
-            </div> 
 
-                       
+                <div v-else class="ph3 justify-around flex flex-wrap">
+                    <div class=" w-25 mv4 mr2 " v-for="(album, index) in albumList" :key="index"  >
+                        <div class="container">
+                            <div v-for="(image, indexThree) in album.images.slice(0, 1)"  >
+                                <i class="fas fa-circle-notch fa-spin black"></i>
+                            </div>
+                        </div>  
+                    </div>   
+                </div>
+            </div>              
         </div>     
     </div>
 </template>
@@ -69,24 +76,14 @@
     top: 70%;
     right: 5%;
     width: 15%;
+} 
+.line {
+    position: absolute;
+    top: 80%;
+    left: 35%;
+    width: 40%;
+    border-bottom: 1px solid white;
 }  
-
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
 
 
 </style>
@@ -106,7 +103,7 @@
         data(){return{
             albumList:[],
             search:"", 
-            filter:""
+            filter:"", lsearching: true
         }},
         computed: {
 
@@ -129,6 +126,7 @@
              },
             async searchAlbums () {
                 let storedToken = localStorage.getItem("token")
+                this.lsearching = false
                 this.$router.push({  params: { text: this.search } })
                 const result = await fetch(`https://api.spotify.com/v1/search?q=${this.search}&type=album&market=Es` , {
                     method: 'GET',
@@ -140,6 +138,7 @@
 
                 let res = await result.json();
                 this.albumList = res.albums.items
+                this.lsearching = true
                 this.filter = this.search
                 this.search = ""
                 return ;

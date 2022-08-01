@@ -1,7 +1,7 @@
 <template> 
     <div class="flex circular flex-column vh-100 ma4 ">
     
-        <div class="pl3 ph5">
+        <div class="pl3 ph5" @click="$router.push({name:'home'})" > 
             <img src="@/assets/img/groove.svg"  class="mt1 ml4 "  />
         </div>
         
@@ -37,7 +37,7 @@
 
                 <div class=" justify-between flex flex-wrap">
                     <div class=" w-25 mv4 mr2 " v-for="(album, index) in albumList" :key="index" >
-                        <div class="container">
+                        <div class="grow container">
                             <div v-for="(image, indexThree) in album.images.slice(0, 1)" >
                                 <img  :src="image.url" alt="Snow" style="width:100%;"/>
                             </div>
