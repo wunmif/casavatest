@@ -15,7 +15,7 @@ module.exports = merge(base, {
     devServer: {
         port: 9393,
         host: "0.0.0.0",
-        overlay: true,
-        disableHostCheck: true,
+        allowedHosts: "all",
+        hot: true,
     }
 })
