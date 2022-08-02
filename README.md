@@ -25,8 +25,8 @@ install dependencies, run the app and also run tests
 
 ### Run The App
 ### using yarn:
-#### yarn start
+#### yarn serve
 ### npm:
-#### yarn start
+#### npm run serve
 
 ######
